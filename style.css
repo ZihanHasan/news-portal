@@ -1,6 +1,3 @@
-body{
-    background-color: antiquewhite;
-}
 .author-img{
     width: 40px;
     height: 40px;
@@ -8,4 +5,53 @@ body{
 .news-img{
     width: 100%;
     height: 100%;
+}
+.news-body{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(image/2.jpg);
+    color: antiquewhite;
+    background-attachment: fixed;
+}
+.modal-background{
+    color: black;
+}
+.company{
+    color: antiquewhite;
+    background-color: rgb(37, 37, 37);
+    border-radius: 15px;
+    
+}
+.logo{
+    color: rgb(37, 37, 37);
+    background-color: antiquewhite;
+    border-radius: 15px;
+}
+
+.blog-body{
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(image/1.jpg);
+    color: antiquewhite;
+    background-attachment: fixed;
+
+}
+.blog-main{
+    background-position: center;
+    width: 50%;
+    text-align: justify;
+    height: 20px solid #fff;
+    padding: 20px;
+    margin: 20px auto;
+}
+
+.blog{
+    background: rgba(77, 134, 160, 0.274);
+    padding: 15px;
+    margin: 15px;
+}
+.blog-p{
+    border-left: 6px solid rgba(77, 134, 160, 0.733);
+}
+
+@media screen and (max-width:576px) {
+    .blog-main{
+        width: 100%;
+    }
 }
