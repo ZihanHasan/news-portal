@@ -41,7 +41,7 @@ const displaydetail = categoriesElement =>{
         div.classList.add('m-4');
         div.innerHTML = `
         <div class="row bg-primary bg-opacity-10 rounded p-lg-0">
-        <div class="col-12 col-sm-5 p-0 d-flex align-items-center">
+        <div class="col-12 col-sm-5 p-2 d-flex align-items-center">
             <img class="img-fluid d-block d-md-block d-lg-block rounded h-100" src="${element.thumbnail_url}" alt="">
         </div>
         <div class="col-12 col-sm-7 d-flex align-items-center py-2">
@@ -89,10 +89,12 @@ const displayDetails = news =>{
     modalTitle.innerText = news.title;
     const newsDetails = document.getElementById('news-details');
     newsDetails.innerHTML = `
-        <h2 class="fw-bold fs-4">Author: ${news.author.name}</h2>
+        <h2 class="fw-bold fs-4">Author: ${news.author.name ? news.author.name : 'No author'}</h2>
+        <img class="author-img" src="${news.author.img ? news.author.img : 'No author'}" alt="">
+        <h2 class="fw-bold fs-6">Date: ${news.author.published_date ? news.author.published_date : 'No date found'}</h2>
         <p class="fs-6">${news.details ? news.details : 'No details found'}</p>
+        <img class="news-img" src="${news.image_url ? news.image_url : 'No image'}" alt="">
+        <h2 class="fw-bold fs-6">Rating: ${news.rating.badge ? news.rating.badge : 'No rating found'} !! ... View: ${news.total_view ? news.total_view : 'No view found'}.</h2>
     `
 }
-
-
 
