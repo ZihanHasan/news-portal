@@ -1,3 +1,8 @@
+/* news page */
+
+.category{
+    color: antiquewhite;
+}
 .author-img{
     width: 40px;
     height: 40px;
@@ -29,6 +34,9 @@
 .page-title{
     border-left: 6px solid rgba(77, 134, 160, 0.733);
 }
+
+/* blog page */
+
 .blog-body{
     background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),url(image/1.jpg);
     color: antiquewhite;

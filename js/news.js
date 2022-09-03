@@ -28,7 +28,7 @@ const displaycategories = categories => {
         const div = document.createElement('div');
 
         div.innerHTML = `
-        <a onclick="categoryDetail('${category.category_id}')" style=" text-decoration: none">${category.category_name}</a>
+        <a onclick="categoryDetail('${category.category_id}')" class="fs-4 category" style=" text-decoration: none">${category.category_name}</a>
         `;
 
         block.appendChild(div);
@@ -56,7 +56,7 @@ const displaydetail = categoriesElement => {
     block1.textContent = '';
     const block2 = document.getElementById('total-news');
     block2.innerHTML = `
-    <h2>News found : ${categoriesElement.length}</h2>
+    <h2 class="fs-3">News found : ${categoriesElement.length}</h2>
     `;
 
     const footer = document.getElementById('footer');
