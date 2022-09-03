@@ -51,19 +51,19 @@ const displaydetail = categoriesElement =>{
                 
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-6 col-md-4 col-lg-4 d-flex justify-content-evenly align-items-center">
-                        <div><img class="author-img" src="${element.author.img}" alt=""></div>
-                        <div><h2 class="fw-bold fs-4">${element.author.name}</h2></div>
+                        <div><img class="author-img" src="${element.author.img ? element.author.img : 'No author'}" alt=""></div>
+                        <div><h2 class="fw-bold fs-4">${element.author.name ? element.author.name : 'No author'}</h2></div>
                         
                     </div>
                     <div class="col-6 col-md-4 col-lg-4 d-flex justify-content-evenly align-items-center">
                         <div><i class="fa-solid fa-eye"></i></div>
-                        <div><h2 class="fw-bold fs-3">${element.total_view}</h2></div>
+                        <div><h2 class="fw-bold fs-3">${element.total_view ? element.total_view : 'No view'}</h2></div>
                         
                     </div>
                     
                 </div>
                 <div class="d-flex justify-content-end mb-3">
-                <button class="btn btn-primary button">See Details</button>
+                <button onclick="loadDetails('${element._id}')" class="btn btn-primary button" data-bs-toggle="modal" data-bs-target="#newsDetailsModal">See Details</button>
                 </div>
             </div>
         </div>
@@ -74,6 +74,25 @@ const displaydetail = categoriesElement =>{
     });
 }
 
+
+// Modal
+
+const loadDetails = code =>{
+    const url = `https://openapi.programming-hero.com/api/news/${code}`;
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayDetails(data.data[0]))
+}
+
+const displayDetails = news =>{
+    const modalTitle = document.getElementById('newsDetailsModalLabel');
+    modalTitle.innerText = news.title;
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+        <h2 class="fw-bold fs-4">Author: ${news.author.name}</h2>
+        <p class="fs-6">${news.details ? news.details : 'No details found'}</p>
+    `
+}
 
 
 
