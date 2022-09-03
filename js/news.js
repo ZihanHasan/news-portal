@@ -7,6 +7,18 @@ const loadCategories = () => {
 
 loadCategories();
 
+// spinner
+
+const toggleSpinner = isLoading => {
+    const loder = document.getElementById('loder');
+    if (isLoading) {
+        loder.classList.remove('d-none');
+    }
+    else {
+        loder.classList.add('d-none');
+    }
+}
+
 const displaycategories = categories => {
     const block = document.getElementById('categories-container');
     categories.forEach(category => {
@@ -14,38 +26,42 @@ const displaycategories = categories => {
         console.log(category.category_id);
         const div = document.createElement('div');
 
-        div.innerHTML =`
+        div.innerHTML = `
         <a onclick="categoryDetail('${category.category_id}')" style=" text-decoration: none">${category.category_name}</a>
         `;
-        // spiner start
-    block.appendChild(div);
+
+        block.appendChild(div);
     })
-   
+
 }
 
-const categoryDetail = code =>{
+const categoryDetail = code => {
+    // spiner start
+    toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${code}`;
     fetch(url)
-    .then(res => res.json())
-    .then(data => displaydetail(data.data))
+        .then(res => res.json())
+        .then(data => displaydetail(data.data))
+        .catch(error => console.log(error))
 }
 
 categoryDetail('01');
 
-const displaydetail = categoriesElement =>{
+const displaydetail = categoriesElement => {
     const block1 = document.getElementById('single-category');
     block1.textContent = '';
 
     const noNews = document.getElementById('message');
-    if(categoriesElement.length === 0){
-        noNews.classList.remove('d-none')
+    if (categoriesElement.length === 0) {
+        noNews.classList.remove('d-none');
+        loder.classList.add('d-none');
     }
-    else{
+    else {
         noNews.classList.add('d-none')
     }
 
     categoriesElement.forEach(element => {
-        
+
         const div = document.createElement('div');
         div.classList.add('row');
         div.classList.add('m-4');
@@ -57,7 +73,7 @@ const displaydetail = categoriesElement =>{
         <div class="col-12 col-sm-7 d-flex align-items-center py-2">
             <div class="mt-5 mt-sm-0 px-3">
                 <h2 class="fw-bold fs-3 my-3">${element.title}</h2>
-                <p class="fs-6">${element.details.length >400 ? element.details.slice(0, 400) : element.details} ...</p>
+                <p class="fs-6">${element.details.length > 400 ? element.details.slice(0, 400) : element.details} ...</p>
                 
                 <div class="row d-flex justify-content-between align-items-center">
                     <div class="col-6 col-md-4 col-lg-4 d-flex justify-content-evenly align-items-center">
@@ -80,21 +96,24 @@ const displaydetail = categoriesElement =>{
         </div>
                 `;
         block1.appendChild(div);
+        // spiner end
+        toggleSpinner(false);
 
     });
 }
-// spiner end
+
 
 // Modal
 
-const loadDetails = code =>{
+const loadDetails = code => {
     const url = `https://openapi.programming-hero.com/api/news/${code}`;
     fetch(url)
-    .then(res => res.json())
-    .then(data => displayDetails(data.data[0]))
+        .then(res => res.json())
+        .then(data => displayDetails(data.data[0]))
+        .catch(error => console.log(error))
 }
 
-const displayDetails = news =>{
+const displayDetails = news => {
     const modalTitle = document.getElementById('newsDetailsModalLabel');
     modalTitle.innerText = news.title;
     const newsDetails = document.getElementById('news-details');
