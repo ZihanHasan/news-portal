@@ -21,6 +21,7 @@ const toggleSpinner = isLoading => {
 
 const displaycategories = categories => {
     const block = document.getElementById('categories-container');
+    
     categories.forEach(category => {
         console.log(category.category_name);
         console.log(category.category_id);
@@ -35,6 +36,8 @@ const displaycategories = categories => {
 
 }
 
+
+
 const categoryDetail = code => {
     // spiner start
     toggleSpinner(true);
@@ -48,8 +51,13 @@ const categoryDetail = code => {
 categoryDetail('01');
 
 const displaydetail = categoriesElement => {
+    console.log(categoriesElement.length);
     const block1 = document.getElementById('single-category');
     block1.textContent = '';
+    const block2 = document.getElementById('total-news');
+    block2.innerHTML = `
+    <h2>News found : ${categoriesElement.length}</h2>
+    `;
 
     const noNews = document.getElementById('message');
     if (categoriesElement.length === 0) {
@@ -101,6 +109,7 @@ const displaydetail = categoriesElement => {
 
     });
 }
+
 
 
 // Modal
