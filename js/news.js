@@ -51,7 +51,7 @@ const categoryDetail = code => {
 categoryDetail('01');
 
 const displaydetail = categoriesElement => {
-    console.log(categoriesElement.length);
+    console.log(categoriesElement);
     const block1 = document.getElementById('single-category');
     block1.textContent = '';
     const block2 = document.getElementById('total-news');
@@ -59,15 +59,21 @@ const displaydetail = categoriesElement => {
     <h2>News found : ${categoriesElement.length}</h2>
     `;
 
+    const footer = document.getElementById('footer');
     const noNews = document.getElementById('message');
     if (categoriesElement.length === 0) {
         noNews.classList.remove('d-none');
         loder.classList.add('d-none');
+        footer.classList.add('d-none') 
     }
     else {
         noNews.classList.add('d-none')
+        footer.classList.remove('d-none')
     }
 
+    categoriesElement.sort(function(a, b){
+        return b.total_view - a.total_view;
+    })
     categoriesElement.forEach(element => {
 
         const div = document.createElement('div');
@@ -91,7 +97,7 @@ const displaydetail = categoriesElement => {
                     </div>
                     <div class="col-6 col-md-4 col-lg-4 d-flex justify-content-evenly align-items-center">
                         <div><i class="fa-solid fa-eye"></i></div>
-                        <div><h2 class="fw-bold fs-3">${element.total_view ? element.total_view : 'No view'}</h2></div>
+                        <div><h2 class="fw-bold fs-3">${element.total_view ? element.total_view : '0'}</h2></div>
                         
                     </div>
                     
@@ -108,6 +114,7 @@ const displaydetail = categoriesElement => {
         toggleSpinner(false);
 
     });
+   
 }
 
 
