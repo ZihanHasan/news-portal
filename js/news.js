@@ -17,6 +17,7 @@ const displaycategories = categories => {
         div.innerHTML =`
         <a onclick="categoryDetail('${category.category_id}')" style=" text-decoration: none">${category.category_name}</a>
         `;
+        // spiner start
     block.appendChild(div);
     })
    
@@ -34,6 +35,15 @@ categoryDetail('01');
 const displaydetail = categoriesElement =>{
     const block1 = document.getElementById('single-category');
     block1.textContent = '';
+
+    const noNews = document.getElementById('message');
+    if(categoriesElement.length === 0){
+        noNews.classList.remove('d-none')
+    }
+    else{
+        noNews.classList.add('d-none')
+    }
+
     categoriesElement.forEach(element => {
         
         const div = document.createElement('div');
@@ -73,7 +83,7 @@ const displaydetail = categoriesElement =>{
 
     });
 }
-
+// spiner end
 
 // Modal
 
