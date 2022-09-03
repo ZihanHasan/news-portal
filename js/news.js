@@ -82,7 +82,7 @@ const displaydetail = categoriesElement => {
         div.innerHTML = `
         <div class="row bg-primary bg-opacity-10 rounded p-lg-0">
         <div class="col-12 col-sm-5 p-2 d-flex align-items-center">
-            <img class="img-fluid d-block d-md-block d-lg-block rounded h-100" src="${element.thumbnail_url}" alt="">
+            <img class="img-fluid d-block d-md-block d-lg-block rounded h-100" src="${element.image_url}" alt="">
         </div>
         <div class="col-12 col-sm-7 d-flex align-items-center py-2">
             <div class="mt-5 mt-sm-0 px-3">
